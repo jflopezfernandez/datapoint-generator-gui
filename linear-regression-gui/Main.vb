@@ -503,7 +503,7 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub btnProcessController_Click(sender As Object, e As EventArgs) Handles btnProcessController.Click
+    Private Sub btnProcessController_Click(sender As Object, e As EventArgs)
         'processController.Id()
     End Sub
 

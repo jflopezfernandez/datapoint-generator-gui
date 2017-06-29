@@ -58,7 +58,6 @@ Partial Class frmMain
         Me.btnOpenCmd = New System.Windows.Forms.Button()
         Me.btnPurgeProcesses = New System.Windows.Forms.Button()
         Me.processController = New System.Diagnostics.Process()
-        Me.btnProcessController = New System.Windows.Forms.Button()
         Me.Process1 = New System.Diagnostics.Process()
         Me.gbBulkGenerator.SuspendLayout()
         Me.gbBulkOptions.SuspendLayout()
@@ -109,7 +108,6 @@ Partial Class frmMain
         'gbBulkGenerator
         '
         Me.gbBulkGenerator.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.gbBulkGenerator.Controls.Add(Me.btnProcessController)
         Me.gbBulkGenerator.Controls.Add(Me.gbBulkOptions)
         Me.gbBulkGenerator.Controls.Add(Me.btnBulkGenerate)
         Me.gbBulkGenerator.Controls.Add(Me.txtIterations)
@@ -131,9 +129,9 @@ Partial Class frmMain
         Me.gbBulkOptions.Controls.Add(Me.numMinMantissa)
         Me.gbBulkOptions.Controls.Add(Me.cbAllowNegatives)
         Me.gbBulkOptions.Controls.Add(Me.cbCommaDelimiters)
-        Me.gbBulkOptions.Location = New System.Drawing.Point(9, 210)
+        Me.gbBulkOptions.Location = New System.Drawing.Point(9, 58)
         Me.gbBulkOptions.Name = "gbBulkOptions"
-        Me.gbBulkOptions.Size = New System.Drawing.Size(214, 123)
+        Me.gbBulkOptions.Size = New System.Drawing.Size(214, 275)
         Me.gbBulkOptions.TabIndex = 3
         Me.gbBulkOptions.TabStop = False
         Me.gbBulkOptions.Text = "Bulk Generation Options"
@@ -400,15 +398,6 @@ Partial Class frmMain
         Me.processController.StartInfo.UserName = ""
         Me.processController.SynchronizingObject = Me
         '
-        'btnProcessController
-        '
-        Me.btnProcessController.Location = New System.Drawing.Point(9, 181)
-        Me.btnProcessController.Name = "btnProcessController"
-        Me.btnProcessController.Size = New System.Drawing.Size(219, 23)
-        Me.btnProcessController.TabIndex = 4
-        Me.btnProcessController.Text = "Process Controller"
-        Me.btnProcessController.UseVisualStyleBackColor = True
-        '
         'Process1
         '
         Me.Process1.StartInfo.Domain = ""
@@ -486,7 +475,6 @@ Partial Class frmMain
     Friend WithEvents ttMantissa As ToolTip
     Friend WithEvents btnPurgeProcesses As Button
     Friend WithEvents btnOpenCmd As Button
-    Friend WithEvents btnProcessController As Button
     Friend WithEvents processController As Process
     Friend WithEvents Process1 As Process
 End Class
