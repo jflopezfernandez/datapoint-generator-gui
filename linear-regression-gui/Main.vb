@@ -1,7 +1,5 @@
 ﻿Option Explicit On
 
-#Disable Warning CA1401
-
 Imports System
 Imports System.IO
 Imports System.Text
@@ -38,6 +36,12 @@ Public Class frmMain
 
         ' After initializing variables, refresh the GUI controls
         refreshControls()
+
+        ' Populate Process List
+
+
+
+        'lbProcessList.Items().Add(System.Diagnostics.Process.GetProcessesByName(processName:="cmd.exe"))
 
     End Sub
 
@@ -164,6 +168,9 @@ Public Class frmMain
         optionAllowNegatives = cbAllowNegatives.Checked
         optionMinimumMantissa = numMinMantissa.Value
         optionMagnitude = numMagnitude.Value
+
+        ' Populate Process List
+        'lbProcessList.Items().Add(System.Diagnostics.Process.GetProcessesByName(processName:="cmd.exe"))
 
     End Sub
 
@@ -395,15 +402,113 @@ Public Class frmMain
         optionMagnitude = numMagnitude.Value
     End Sub
 
-    Private Sub cbConsoleOpen_CheckedChanged(sender As Object, e As EventArgs) Handles cbConsoleOpen.CheckedChanged
+    ' Deleted
+    Private Sub cbConsoleOpen_CheckedChanged(sender As Object, e As EventArgs)
 
-        If cbConsoleOpen.Checked Then
-            NativeMethods.Win32.AllocConsole()
-        Else
-            NativeMethods.Win32.FreeConsole()
-        End If
+        'Dim processNewConsole As Process
+
+        'If cbConsoleOpen.Checked Then
+
+        '    processNewConsole = Process.Start("cmd.exe")
+
+        '    lbProcessList.Items().Add(processNewConsole)
+        '    lbProcessList.Items.Add(processNewConsole.ProcessName())
+
+        'Else
+        '    Dim processList() As Process
+
+        '    processList = Process.GetProcessesByName("cmd.exe")
+
+        '    For Each proc As Process In processList
+        '        If MsgBox("Terminate " & proc.ProcessName & "?", MsgBoxStyle.YesNo, "Terminate?") = MsgBoxResult.Yes Then
+        '            proc.Kill()
+        '        End If
+        '    Next
+        'End If
 
     End Sub
 
+    Private Sub lbProcessList_DoubleClick(sender As Object, e As EventArgs) Handles lbProcessList.DoubleClick
 
+        Dim processListItem As Process
+        processListItem = Process.GetProcessById(Process.)
+
+        Dim promptTerminateProcess = MsgBox("Do you want to terminate this process? ", vbYesNo, "Proceed?")
+
+        If promptTerminateProcess = vbYes Then
+            'statusstripMain_lblStatus.Text = "Status: Terminating Process - " + processListItem.ProcessName()
+
+            lbProcessList.Items.Remove(lbProcessList.SelectedItem())
+            processListItem.Kill()
+
+        Else
+            Exit Sub
+        End If
+
+        statusstripMain_lblStatus.Text = "Status: Ready"
+
+    End Sub
+
+    'Private Sub shutdownAllProcesses()
+
+    '    Dim processListItem As Process
+    '    For Each processListItem In Process.GetProcesses()
+
+    '        If (processListItem.ProcessName = "cmd") Then
+    '            Dim promptTerminateProcess = MsgBox("Do you want to terminate this process? ", vbYesNo, "Proceed?")
+
+    '            lbProcessList.
+
+    '            If promptTerminateProcess = vbYes Then
+    '                statusstripMain_lblStatus.Text = "Status: Terminating Process - " + processListItem.ProcessName()
+
+    '                (lbProcessList.SelectedItem())
+    '                processListItem.Kill()
+    '                'lbProcessList.Items.Remove(Int(processListItem))
+
+    '                lbProcessList.Items.Remove(lbProcessList.SelectedIndex())
+    '            Else
+    '                Exit Sub
+    '            End If
+    '        End If
+    '    Next
+
+    '    statusstripMain_lblStatus.Text = "Status: Ready"
+
+    'End Sub
+
+
+    Private Sub btnPurgeProcesses_Click(sender As Object, e As EventArgs) Handles btnPurgeProcesses.Click
+
+        'shutdownAllProcesses()
+
+        '    Dim processList() As Process
+
+        '    processList = Process.GetProcessesByName("cmd.exe")
+
+        '    For Each proc As Process In processList
+        '        If MsgBox("Terminate " & proc.ProcessName & "?", MsgBoxStyle.YesNo, "Terminate?") = MsgBoxResult.Yes Then
+        '            proc.Kill()
+        '        End If
+        '    Next
+
+    End Sub
+
+    Private Sub btnOpenCmd_Click(sender As Object, e As EventArgs) Handles btnOpenCmd.Click
+        Dim processNewConsole = Process.Start("cmd.exe")
+
+        lbProcessList.Items().Add(processNewConsole)
+        lbProcessList.Items.Add(processNewConsole.ProcessName())
+
+
+    End Sub
+
+    Private Sub btnProcessController_Click(sender As Object, e As EventArgs) Handles btnProcessController.Click
+        'processController.Id()
+    End Sub
+
+    Private Sub saveSettings()
+
+
+    End Sub
 End Class
