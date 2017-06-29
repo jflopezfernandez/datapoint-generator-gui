@@ -117,6 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="ttMagnitude.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>151, 17</value>
+  </metadata>
+  <data name="numMagnitude.ToolTip" xml:space="preserve">
+    <value>Use this option to select the base magnitude of the
+generated random numbers. In general, a magnitude
+of 1 will yield random numbers between 1 and 10. A
+magnitude of 10 will yield numbers from 10 to 100, and
+so on.</value>
+  </data>
+  <metadata name="ttMantissa.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>270, 17</value>
+  </metadata>
+  <data name="numMinMantissa.ToolTip" xml:space="preserve">
+    <value>This option allows you to set the desired minimum
+precision of the generated random numbers. Keep in
+mind that since there is a limited amount of memory
+per data type (64 bits for a double, usually), you are
+not guaranteed the minimum number of decimal
+places if you set the base magnitude too high.</value>
+  </data>
   <metadata name="sfdSaveDataset.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

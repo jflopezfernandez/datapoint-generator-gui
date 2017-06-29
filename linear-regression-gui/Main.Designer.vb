@@ -22,12 +22,19 @@ Partial Class frmMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.lblX = New System.Windows.Forms.Label()
         Me.lblY = New System.Windows.Forms.Label()
         Me.txtXValue = New System.Windows.Forms.TextBox()
         Me.txtYValue = New System.Windows.Forms.TextBox()
         Me.gbBulkGenerator = New System.Windows.Forms.GroupBox()
         Me.gbBulkOptions = New System.Windows.Forms.GroupBox()
+        Me.lblMagnitude = New System.Windows.Forms.Label()
+        Me.numMagnitude = New System.Windows.Forms.NumericUpDown()
+        Me.lblMinimumMantissa = New System.Windows.Forms.Label()
+        Me.numMinMantissa = New System.Windows.Forms.NumericUpDown()
+        Me.cbAllowNegatives = New System.Windows.Forms.CheckBox()
         Me.cbCommaDelimiters = New System.Windows.Forms.CheckBox()
         Me.btnBulkGenerate = New System.Windows.Forms.Button()
         Me.txtIterations = New System.Windows.Forms.TextBox()
@@ -46,8 +53,13 @@ Partial Class frmMain
         Me.sfdSaveDataset = New System.Windows.Forms.SaveFileDialog()
         Me.cmdExit = New System.Windows.Forms.Button()
         Me.btnUseConsole = New System.Windows.Forms.Button()
+        Me.ttMagnitude = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ttMantissa = New System.Windows.Forms.ToolTip(Me.components)
+        Me.cbConsoleOpen = New System.Windows.Forms.CheckBox()
         Me.gbBulkGenerator.SuspendLayout()
         Me.gbBulkOptions.SuspendLayout()
+        CType(Me.numMagnitude, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.numMinMantissa, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbSettings.SuspendLayout()
         Me.gbFileOperations.SuspendLayout()
         Me.SuspendLayout()
@@ -101,17 +113,72 @@ Partial Class frmMain
         '
         'gbBulkOptions
         '
+        Me.gbBulkOptions.Controls.Add(Me.lblMagnitude)
+        Me.gbBulkOptions.Controls.Add(Me.numMagnitude)
+        Me.gbBulkOptions.Controls.Add(Me.lblMinimumMantissa)
+        Me.gbBulkOptions.Controls.Add(Me.numMinMantissa)
+        Me.gbBulkOptions.Controls.Add(Me.cbAllowNegatives)
         Me.gbBulkOptions.Controls.Add(Me.cbCommaDelimiters)
-        Me.gbBulkOptions.Location = New System.Drawing.Point(9, 233)
+        Me.gbBulkOptions.Location = New System.Drawing.Point(9, 113)
         Me.gbBulkOptions.Name = "gbBulkOptions"
-        Me.gbBulkOptions.Size = New System.Drawing.Size(213, 100)
+        Me.gbBulkOptions.Size = New System.Drawing.Size(214, 220)
         Me.gbBulkOptions.TabIndex = 3
         Me.gbBulkOptions.TabStop = False
         Me.gbBulkOptions.Text = "Bulk Generation Options"
         '
+        'lblMagnitude
+        '
+        Me.lblMagnitude.AutoSize = True
+        Me.lblMagnitude.Location = New System.Drawing.Point(113, 62)
+        Me.lblMagnitude.Name = "lblMagnitude"
+        Me.lblMagnitude.Size = New System.Drawing.Size(57, 13)
+        Me.lblMagnitude.TabIndex = 5
+        Me.lblMagnitude.Text = "Magnitude"
+        '
+        'numMagnitude
+        '
+        Me.numMagnitude.Increment = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.numMagnitude.Location = New System.Drawing.Point(108, 78)
+        Me.numMagnitude.Name = "numMagnitude"
+        Me.numMagnitude.Size = New System.Drawing.Size(100, 20)
+        Me.numMagnitude.TabIndex = 4
+        Me.ttMagnitude.SetToolTip(Me.numMagnitude, resources.GetString("numMagnitude.ToolTip"))
+        Me.numMagnitude.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
+        'lblMinimumMantissa
+        '
+        Me.lblMinimumMantissa.AutoSize = True
+        Me.lblMinimumMantissa.Location = New System.Drawing.Point(6, 62)
+        Me.lblMinimumMantissa.Name = "lblMinimumMantissa"
+        Me.lblMinimumMantissa.Size = New System.Drawing.Size(93, 13)
+        Me.lblMinimumMantissa.TabIndex = 3
+        Me.lblMinimumMantissa.Text = "Minimum Mantissa"
+        '
+        'numMinMantissa
+        '
+        Me.numMinMantissa.Location = New System.Drawing.Point(6, 78)
+        Me.numMinMantissa.Name = "numMinMantissa"
+        Me.numMinMantissa.Size = New System.Drawing.Size(100, 20)
+        Me.numMinMantissa.TabIndex = 2
+        Me.ttMantissa.SetToolTip(Me.numMinMantissa, resources.GetString("numMinMantissa.ToolTip"))
+        Me.numMinMantissa.Value = New Decimal(New Integer() {4, 0, 0, 0})
+        '
+        'cbAllowNegatives
+        '
+        Me.cbAllowNegatives.AutoSize = True
+        Me.cbAllowNegatives.ForeColor = System.Drawing.Color.Red
+        Me.cbAllowNegatives.Location = New System.Drawing.Point(21, 42)
+        Me.cbAllowNegatives.Name = "cbAllowNegatives"
+        Me.cbAllowNegatives.Size = New System.Drawing.Size(102, 17)
+        Me.cbAllowNegatives.TabIndex = 1
+        Me.cbAllowNegatives.Text = "Allow Negatives"
+        Me.cbAllowNegatives.UseVisualStyleBackColor = True
+        '
         'cbCommaDelimiters
         '
         Me.cbCommaDelimiters.AutoSize = True
+        Me.cbCommaDelimiters.Checked = True
+        Me.cbCommaDelimiters.CheckState = System.Windows.Forms.CheckState.Checked
         Me.cbCommaDelimiters.Location = New System.Drawing.Point(21, 19)
         Me.cbCommaDelimiters.Name = "cbCommaDelimiters"
         Me.cbCommaDelimiters.Size = New System.Drawing.Size(131, 17)
@@ -158,6 +225,7 @@ Partial Class frmMain
         '
         'gbSettings
         '
+        Me.gbSettings.Controls.Add(Me.cbConsoleOpen)
         Me.gbSettings.Controls.Add(Me.btnSetUsername)
         Me.gbSettings.Controls.Add(Me.txtUsername)
         Me.gbSettings.Controls.Add(Me.lblUsername)
@@ -201,10 +269,12 @@ Partial Class frmMain
         '
         'gbFileOperations
         '
+        Me.gbFileOperations.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gbFileOperations.Controls.Add(Me.btnCreateFile)
-        Me.gbFileOperations.Location = New System.Drawing.Point(6, 97)
+        Me.gbFileOperations.Location = New System.Drawing.Point(6, 127)
         Me.gbFileOperations.Name = "gbFileOperations"
-        Me.gbFileOperations.Size = New System.Drawing.Size(133, 126)
+        Me.gbFileOperations.Size = New System.Drawing.Size(133, 87)
         Me.gbFileOperations.TabIndex = 4
         Me.gbFileOperations.TabStop = False
         Me.gbFileOperations.Text = "File Operations"
@@ -272,6 +342,27 @@ Partial Class frmMain
         Me.btnUseConsole.Text = "Use Console"
         Me.btnUseConsole.UseVisualStyleBackColor = True
         '
+        'ttMagnitude
+        '
+        Me.ttMagnitude.StripAmpersands = True
+        Me.ttMagnitude.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.ttMagnitude.ToolTipTitle = "Random Numbers' Base Magnitude"
+        '
+        'ttMantissa
+        '
+        Me.ttMantissa.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.ttMantissa.ToolTipTitle = "Set Precision"
+        '
+        'cbConsoleOpen
+        '
+        Me.cbConsoleOpen.AutoSize = True
+        Me.cbConsoleOpen.Location = New System.Drawing.Point(12, 97)
+        Me.cbConsoleOpen.Name = "cbConsoleOpen"
+        Me.cbConsoleOpen.Size = New System.Drawing.Size(93, 17)
+        Me.cbConsoleOpen.TabIndex = 8
+        Me.cbConsoleOpen.Text = "Console Open"
+        Me.cbConsoleOpen.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -296,6 +387,8 @@ Partial Class frmMain
         Me.gbBulkGenerator.PerformLayout()
         Me.gbBulkOptions.ResumeLayout(False)
         Me.gbBulkOptions.PerformLayout()
+        CType(Me.numMagnitude, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.numMinMantissa, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbSettings.ResumeLayout(False)
         Me.gbSettings.PerformLayout()
         Me.gbFileOperations.ResumeLayout(False)
@@ -328,4 +421,12 @@ Partial Class frmMain
     Friend WithEvents btnSetUsername As Button
     Friend WithEvents txtUsername As TextBox
     Friend WithEvents lblUsername As Label
+    Friend WithEvents numMagnitude As NumericUpDown
+    Friend WithEvents lblMinimumMantissa As Label
+    Friend WithEvents numMinMantissa As NumericUpDown
+    Friend WithEvents cbAllowNegatives As CheckBox
+    Friend WithEvents lblMagnitude As Label
+    Friend WithEvents ttMagnitude As ToolTip
+    Friend WithEvents ttMantissa As ToolTip
+    Friend WithEvents cbConsoleOpen As CheckBox
 End Class

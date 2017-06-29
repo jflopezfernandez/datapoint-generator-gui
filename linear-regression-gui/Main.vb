@@ -1,15 +1,25 @@
 ﻿Option Explicit On
 
+#Disable Warning CA1401
+
 Imports System
 Imports System.IO
 Imports System.Text
 
+Imports System.Runtime.InteropServices
+
 Public Class frmMain
 
+    ' Options
     Public usernameHasBeenSet As Boolean
 
     Public fileCreated As Boolean
     Public outputFileName As String
+
+    Public optionUseCommaDelimiters As Boolean
+    Public optionAllowNegatives As Boolean              ' [NOT IMPLEMENTED]
+    Public optionMinimumMantissa As Integer
+    Public optionMagnitude As Integer
 
     ' File and Directory Variables
     Dim userName As String
@@ -147,6 +157,14 @@ Public Class frmMain
 
         End If
 
+
+        ' Update variables based on their control's current setting
+
+        optionUseCommaDelimiters = cbCommaDelimiters.Checked
+        optionAllowNegatives = cbAllowNegatives.Checked
+        optionMinimumMantissa = numMinMantissa.Value
+        optionMagnitude = numMagnitude.Value
+
     End Sub
 
     Private Sub btnCreateFile_Click(sender As Object, e As EventArgs) Handles btnCreateFile.Click
@@ -214,19 +232,48 @@ Public Class frmMain
             Randomize()
 
             Dim randomDouble As New Random
+            Dim randomInt As New Random
 
             Dim rand_x As Double
             Dim rand_y As Double
+
+            Dim rand_negativex As Integer
+            Dim rand_negativey As Integer
 
             Dim counter As Int64
             counter = 0
 
 
             Do Until (counter = iterations)
-                rand_x = randomDouble.NextDouble()
-                rand_y = randomDouble.NextDouble()
+                rand_x = randomDouble.NextDouble() * Convert.ToDouble(optionMagnitude)
+                rand_y = randomDouble.NextDouble() * Convert.ToDouble(optionMagnitude)
 
-                Dim input As String = Conversion.Str(rand_x) + ", " + Conversion.Str(rand_y)
+                If (optionAllowNegatives = True) Then
+                    rand_negativex = randomInt.Next(0, 10)
+                    rand_negativey = randomInt.Next(0, 10)
+
+                    If (rand_negativex < 5) Then
+                        rand_x = -(rand_x)
+                    End If
+
+                    If (rand_negativey < 5) Then
+                        rand_y = -(rand_y)
+                    End If
+
+                End If
+
+                Dim input As String
+
+                ' Round the doubles to the requested decimal point
+                rand_x = roundDecimalNumber(rand_x)
+                rand_y = roundDecimalNumber(rand_y)
+
+                If (optionUseCommaDelimiters = True) Then
+                    input = Conversion.Str(rand_x) + ", " + Conversion.Str(rand_y)
+                Else
+                    input = Conversion.Str(rand_x) + " " + Conversion.Str(rand_y)
+                End If
+
                 PrintLine(1, input)
 
                 ' Increase counter
@@ -296,6 +343,7 @@ Public Class frmMain
         End If
 
         fileOutput(Int(txtIterations.Text), True)
+        confirmationDialogOnBulkGenerationCompletion(Int(txtIterations.Text))
 
         FileClose(1)
     End Sub
@@ -312,4 +360,50 @@ Public Class frmMain
 
         FileClose(1)
     End Sub
+
+    Private Sub btnUseConsole_Click(sender As Object, e As EventArgs) Handles btnUseConsole.Click
+
+        enterDataWithConsole()
+
+    End Sub
+
+    Private Sub confirmationDialogOnBulkGenerationCompletion(ByVal iterations As Int64)
+
+        MsgBox("Bulk Random Datapoint Generation Complete. Iterations: " + Str(iterations) + ". Elapsed time: [unknown]. ", vbOKOnly + vbExclamation, "Job Completed")
+
+    End Sub
+
+    Private Sub useConsole()
+        'Dim input As String
+
+        'Console.WriteLine("Type in a sentence and hit Enter:")
+        'input = Console.ReadLine()
+        'Console.WriteLine(input)
+    End Sub
+
+    Public Function roundDecimalNumber(ByRef number As Double)
+        Dim roundedDouble = Decimal.Round(Convert.ToDecimal(number), optionMinimumMantissa)
+
+        Return roundedDouble
+    End Function
+
+    Private Sub numMinMantissa_ValueChanged(sender As Object, e As EventArgs) Handles numMinMantissa.ValueChanged
+        optionMinimumMantissa = numMinMantissa.Value
+    End Sub
+
+    Private Sub numMagnitude_ValueChanged(sender As Object, e As EventArgs) Handles numMagnitude.ValueChanged
+        optionMagnitude = numMagnitude.Value
+    End Sub
+
+    Private Sub cbConsoleOpen_CheckedChanged(sender As Object, e As EventArgs) Handles cbConsoleOpen.CheckedChanged
+
+        If cbConsoleOpen.Checked Then
+            NativeMethods.Win32.AllocConsole()
+        Else
+            NativeMethods.Win32.FreeConsole()
+        End If
+
+    End Sub
+
+
 End Class
