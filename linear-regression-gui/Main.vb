@@ -6,6 +6,7 @@ Imports System.Text
 
 Public Class frmMain
 
+    Public usernameHasBeenSet As Boolean
 
     Public fileCreated As Boolean
     Public outputFileName As String
@@ -17,6 +18,9 @@ Public Class frmMain
     Dim filenameAndPath As String
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        usernameHasBeenSet = False
+
         ' File is not created until the user explicitly tells the program to generate it
         fileCreated = False
 
@@ -51,41 +55,91 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub btnAddDatapoint_Click(sender As Object, e As EventArgs) Handles btnAddDatapoint.Click
-
-    End Sub
-
     Private Sub refreshControls()
 
-        ' Set Datapoints button will not work until the user has created an output file to use
-        If fileCreated = False Then
-            With btnAddDatapoint
-                .Text = "[No Output File]"
+        If usernameHasBeenSet = True Then
+            ' Once the username has been set, let the user proceed as normal
+
+            ' Set Datapoints button will not work until the user has created an output file to use
+            If fileCreated = False Then
+                With btnAddDatapoint
+                    .Text = "[No Output File]"
+                    .Enabled = False
+                End With
+
+                With btnBulkGenerate
+                    .Text = "[No Output File]"
+                    .Enabled = False
+                End With
+
+                With btnUseConsole
+                    .Text = "[No Output File]"
+                    .Enabled = False
+                End With
+
+            Else
+                ' Username has been set
+                ' Dataset file has been generated
+                '       [READY TO GENERATE DATA]
+                ' Re-enable all controls
+
+                ' [DISABLED DUE TO LACK OF USEFULNESS FOR NOW]
+                '' Logic for Create File button in the File Operations group box
+                'If outputFileName = txtOutputFileName.Text Then
+                '    With btnCreateFile
+                '        .Text = "Replace Dataset"
+                '    End With
+                'Else
+                '    With btnCreateFile
+                '        .Text = "Create New File"
+                '    End With
+                'End If
+
+
+                With btnAddDatapoint
+                    .Text = "Add Datapoint"
+                    .Enabled = True
+                End With
+
+                With btnBulkGenerate
+                    .Text = "Generate Random Datapoints in Bulk"
+                    .Enabled = True
+                End With
+
+                With btnUseConsole
+                    .Text = "Use Console to Input Data"
+                    .Enabled = True
+                End With
+
+                With btnCreateFile
+                    .Text = "Create File"
+                    .Enabled = True
+                End With
+
+            End If
+
+        Else
+            ' Username needs to be set, disable controls
+            With btnCreateFile
+                .Text = "[Need to Set User Name]"
                 .Enabled = False
             End With
 
-        Else
-            ' Dataset file has not yet been generated
-
-
-            ' Logic for Create File button in the File Operations group box
-            If outputFileName = txtOutputFileName.Text Then
-                With btnCreateFile
-                    .Text = "Replace Dataset"
-                End With
-            Else
-                With btnCreateFile
-                    .Text = "Create New File"
-                End With
-            End If
-
-
-            ' User has created a dataset file
-
             With btnAddDatapoint
-                .Text = "Add Datapoint"
-                .Enabled = True
+                .Text = "[Need to Set User Name]"
+                .Enabled = False
             End With
+
+            With btnBulkGenerate
+                .Text = "[Need to Set User Name]"
+                .Enabled = False
+            End With
+
+            With btnUseConsole
+                .Text = "[Need to Set User Name]"
+                .Enabled = False
+            End With
+
         End If
 
     End Sub
@@ -109,9 +163,19 @@ Public Class frmMain
                 Exit Sub
             End If
         Else
-            ' No file has been created yet, so make one
-            createDatasetFile()
+            ' If a file has not been previously created, generate the file and turn on the fileCreated switch
 
+            Dim verifyUsername = MsgBox("Your username is currently set to " + userName + ", is this correct? This program will not work if your username does not match your Windows profile.", vbCancel + vbYes, "Please confirm user name.")
+
+            If verifyUsername = vbYes Then
+
+                ' No file has been created yet, so make one
+                createDatasetFile()
+                fileCreated = True
+
+            Else
+                Exit Sub
+            End If
         End If
     End Sub
 
@@ -122,8 +186,13 @@ Public Class frmMain
         Dim input As String
         input = txtXValue.Text + ", " + txtYValue.Text
 
-        FileOpen(1, filenameAndPath, OpenMode.Append)
-        PrintLine(1, input)
+        ' If the file does not exist, create it, otherwise just append to it
+        If IO.File.Exists(filenameAndPath) Then
+            FileOpen(1, filenameAndPath, OpenMode.Append)
+        Else
+            FileOpen(1, filenameAndPath, OpenMode.Output)
+        End If
+
         FileClose(1)
 
     End Sub
@@ -155,4 +224,37 @@ Public Class frmMain
 
     End Sub
 
+    Private Sub enterDataWithConsole()
+
+        ' If file does not exist, create it, otherwise just append to it
+        If IO.File.Exists(filenameAndPath) Then
+            FileOpen(1, filenameAndPath, OpenMode.Append)
+        Else
+            FileOpen(1, filenameAndPath, OpenMode.Output)
+        End If
+
+
+        Dim input As String = ""
+
+        Console.WriteLine("Enter x and y values on the same line separated by a comma and a space: 1.00, 1.00 ")
+        Console.WriteLine("You may enter [stop] or [STOP] to exit console data entry mode. ")
+
+        While input.ToUpper <> "STOP"
+
+            input = Console.ReadLine
+
+            If input.ToUpper <> "STOP" Then
+                Exit While
+            End If
+        End While
+
+        FileClose(1)
+    End Sub
+
+    Private Sub btnSetUsername_Click(sender As Object, e As EventArgs) Handles btnSetUsername.Click
+        userName = txtUsername.Text
+        usernameHasBeenSet = True
+
+        refreshControls()
+    End Sub
 End Class

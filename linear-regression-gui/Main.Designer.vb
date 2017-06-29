@@ -34,6 +34,9 @@ Partial Class frmMain
         Me.lblBulkGenerate = New System.Windows.Forms.Label()
         Me.btnAddDatapoint = New System.Windows.Forms.Button()
         Me.gbSettings = New System.Windows.Forms.GroupBox()
+        Me.btnSetUsername = New System.Windows.Forms.Button()
+        Me.txtUsername = New System.Windows.Forms.TextBox()
+        Me.lblUsername = New System.Windows.Forms.Label()
         Me.gbFileOperations = New System.Windows.Forms.GroupBox()
         Me.btnCreateFile = New System.Windows.Forms.Button()
         Me.cbPromptToSaveOnExit = New System.Windows.Forms.CheckBox()
@@ -155,6 +158,9 @@ Partial Class frmMain
         '
         'gbSettings
         '
+        Me.gbSettings.Controls.Add(Me.btnSetUsername)
+        Me.gbSettings.Controls.Add(Me.txtUsername)
+        Me.gbSettings.Controls.Add(Me.lblUsername)
         Me.gbSettings.Controls.Add(Me.gbFileOperations)
         Me.gbSettings.Controls.Add(Me.cbPromptToSaveOnExit)
         Me.gbSettings.Controls.Add(Me.btnSet)
@@ -167,12 +173,38 @@ Partial Class frmMain
         Me.gbSettings.TabStop = False
         Me.gbSettings.Text = "Settings"
         '
+        'btnSetUsername
+        '
+        Me.btnSetUsername.Location = New System.Drawing.Point(95, 71)
+        Me.btnSetUsername.Name = "btnSetUsername"
+        Me.btnSetUsername.Size = New System.Drawing.Size(44, 20)
+        Me.btnSetUsername.TabIndex = 7
+        Me.btnSetUsername.Text = "Set"
+        Me.btnSetUsername.UseVisualStyleBackColor = True
+        '
+        'txtUsername
+        '
+        Me.txtUsername.Location = New System.Drawing.Point(6, 71)
+        Me.txtUsername.Name = "txtUsername"
+        Me.txtUsername.Size = New System.Drawing.Size(83, 20)
+        Me.txtUsername.TabIndex = 6
+        Me.txtUsername.Text = "user"
+        '
+        'lblUsername
+        '
+        Me.lblUsername.AutoSize = True
+        Me.lblUsername.Location = New System.Drawing.Point(9, 55)
+        Me.lblUsername.Name = "lblUsername"
+        Me.lblUsername.Size = New System.Drawing.Size(81, 13)
+        Me.lblUsername.TabIndex = 5
+        Me.lblUsername.Text = "Username: (PC)"
+        '
         'gbFileOperations
         '
         Me.gbFileOperations.Controls.Add(Me.btnCreateFile)
-        Me.gbFileOperations.Location = New System.Drawing.Point(6, 57)
+        Me.gbFileOperations.Location = New System.Drawing.Point(6, 97)
         Me.gbFileOperations.Name = "gbFileOperations"
-        Me.gbFileOperations.Size = New System.Drawing.Size(133, 166)
+        Me.gbFileOperations.Size = New System.Drawing.Size(133, 126)
         Me.gbFileOperations.TabIndex = 4
         Me.gbFileOperations.TabStop = False
         Me.gbFileOperations.Text = "File Operations"
@@ -293,4 +325,7 @@ Partial Class frmMain
     Friend WithEvents gbFileOperations As GroupBox
     Friend WithEvents btnCreateFile As Button
     Friend WithEvents btnUseConsole As Button
+    Friend WithEvents btnSetUsername As Button
+    Friend WithEvents txtUsername As TextBox
+    Friend WithEvents lblUsername As Label
 End Class
