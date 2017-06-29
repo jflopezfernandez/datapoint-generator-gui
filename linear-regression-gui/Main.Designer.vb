@@ -24,25 +24,29 @@ Partial Class frmMain
     Private Sub InitializeComponent()
         Me.lblX = New System.Windows.Forms.Label()
         Me.lblY = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtXValue = New System.Windows.Forms.TextBox()
+        Me.txtYValue = New System.Windows.Forms.TextBox()
         Me.gbBulkGenerator = New System.Windows.Forms.GroupBox()
-        Me.lblBulkGenerate = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.btnBulkGenerate = New System.Windows.Forms.Button()
         Me.gbBulkOptions = New System.Windows.Forms.GroupBox()
         Me.cbCommaDelimiters = New System.Windows.Forms.CheckBox()
+        Me.btnBulkGenerate = New System.Windows.Forms.Button()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.lblBulkGenerate = New System.Windows.Forms.Label()
         Me.btnAddDatapoint = New System.Windows.Forms.Button()
         Me.gbSettings = New System.Windows.Forms.GroupBox()
+        Me.gbFileOperations = New System.Windows.Forms.GroupBox()
+        Me.btnCreateFile = New System.Windows.Forms.Button()
+        Me.cbPromptToSaveOnExit = New System.Windows.Forms.CheckBox()
+        Me.btnSet = New System.Windows.Forms.Button()
+        Me.txtOutputFileName = New System.Windows.Forms.TextBox()
         Me.lblOutputFileName = New System.Windows.Forms.Label()
         Me.sfdSaveDataset = New System.Windows.Forms.SaveFileDialog()
-        Me.txtOutputFileName = New System.Windows.Forms.TextBox()
-        Me.btnSet = New System.Windows.Forms.Button()
         Me.cmdExit = New System.Windows.Forms.Button()
-        Me.cbPromptToSaveOnExit = New System.Windows.Forms.CheckBox()
+        Me.btnUseConsole = New System.Windows.Forms.Button()
         Me.gbBulkGenerator.SuspendLayout()
         Me.gbBulkOptions.SuspendLayout()
         Me.gbSettings.SuspendLayout()
+        Me.gbFileOperations.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblX
@@ -63,21 +67,21 @@ Partial Class frmMain
         Me.lblY.TabIndex = 1
         Me.lblY.Text = "Y"
         '
-        'TextBox1
+        'txtXValue
         '
-        Me.TextBox1.Location = New System.Drawing.Point(57, 6)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 2
-        Me.TextBox1.Text = "0.00"
+        Me.txtXValue.Location = New System.Drawing.Point(57, 6)
+        Me.txtXValue.Name = "txtXValue"
+        Me.txtXValue.Size = New System.Drawing.Size(100, 20)
+        Me.txtXValue.TabIndex = 2
+        Me.txtXValue.Text = "0.00"
         '
-        'TextBox2
+        'txtYValue
         '
-        Me.TextBox2.Location = New System.Drawing.Point(57, 32)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox2.TabIndex = 3
-        Me.TextBox2.Text = "0.00"
+        Me.txtYValue.Location = New System.Drawing.Point(57, 32)
+        Me.txtYValue.Name = "txtYValue"
+        Me.txtYValue.Size = New System.Drawing.Size(100, 20)
+        Me.txtYValue.TabIndex = 3
+        Me.txtYValue.Text = "0.00"
         '
         'gbBulkGenerator
         '
@@ -91,34 +95,6 @@ Partial Class frmMain
         Me.gbBulkGenerator.TabIndex = 4
         Me.gbBulkGenerator.TabStop = False
         Me.gbBulkGenerator.Text = "Bulk Generator"
-        '
-        'lblBulkGenerate
-        '
-        Me.lblBulkGenerate.AutoSize = True
-        Me.lblBulkGenerate.Location = New System.Drawing.Point(6, 16)
-        Me.lblBulkGenerate.Name = "lblBulkGenerate"
-        Me.lblBulkGenerate.Size = New System.Drawing.Size(155, 13)
-        Me.lblBulkGenerate.TabIndex = 0
-        Me.lblBulkGenerate.Text = "Generate N random data points"
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Location = New System.Drawing.Point(6, 32)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox3.TabIndex = 1
-        Me.TextBox3.Text = "0"
-        '
-        'btnBulkGenerate
-        '
-        Me.btnBulkGenerate.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnBulkGenerate.Location = New System.Drawing.Point(9, 339)
-        Me.btnBulkGenerate.Name = "btnBulkGenerate"
-        Me.btnBulkGenerate.Size = New System.Drawing.Size(213, 26)
-        Me.btnBulkGenerate.TabIndex = 2
-        Me.btnBulkGenerate.Text = "Bulk Generate"
-        Me.btnBulkGenerate.UseVisualStyleBackColor = True
         '
         'gbBulkOptions
         '
@@ -140,6 +116,34 @@ Partial Class frmMain
         Me.cbCommaDelimiters.Text = "Use Comma Delimiters"
         Me.cbCommaDelimiters.UseVisualStyleBackColor = True
         '
+        'btnBulkGenerate
+        '
+        Me.btnBulkGenerate.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnBulkGenerate.Location = New System.Drawing.Point(9, 339)
+        Me.btnBulkGenerate.Name = "btnBulkGenerate"
+        Me.btnBulkGenerate.Size = New System.Drawing.Size(213, 26)
+        Me.btnBulkGenerate.TabIndex = 2
+        Me.btnBulkGenerate.Text = "Bulk Generate"
+        Me.btnBulkGenerate.UseVisualStyleBackColor = True
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(6, 32)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox3.TabIndex = 1
+        Me.TextBox3.Text = "0"
+        '
+        'lblBulkGenerate
+        '
+        Me.lblBulkGenerate.AutoSize = True
+        Me.lblBulkGenerate.Location = New System.Drawing.Point(6, 16)
+        Me.lblBulkGenerate.Name = "lblBulkGenerate"
+        Me.lblBulkGenerate.Size = New System.Drawing.Size(155, 13)
+        Me.lblBulkGenerate.TabIndex = 0
+        Me.lblBulkGenerate.Text = "Generate N random data points"
+        '
         'btnAddDatapoint
         '
         Me.btnAddDatapoint.Location = New System.Drawing.Point(12, 58)
@@ -151,51 +155,36 @@ Partial Class frmMain
         '
         'gbSettings
         '
+        Me.gbSettings.Controls.Add(Me.gbFileOperations)
         Me.gbSettings.Controls.Add(Me.cbPromptToSaveOnExit)
         Me.gbSettings.Controls.Add(Me.btnSet)
         Me.gbSettings.Controls.Add(Me.txtOutputFileName)
         Me.gbSettings.Controls.Add(Me.lblOutputFileName)
-        Me.gbSettings.Location = New System.Drawing.Point(12, 87)
+        Me.gbSettings.Location = New System.Drawing.Point(12, 119)
         Me.gbSettings.Name = "gbSettings"
-        Me.gbSettings.Size = New System.Drawing.Size(145, 252)
+        Me.gbSettings.Size = New System.Drawing.Size(145, 220)
         Me.gbSettings.TabIndex = 6
         Me.gbSettings.TabStop = False
         Me.gbSettings.Text = "Settings"
         '
-        'lblOutputFileName
+        'gbFileOperations
         '
-        Me.lblOutputFileName.AutoSize = True
-        Me.lblOutputFileName.Location = New System.Drawing.Point(6, 16)
-        Me.lblOutputFileName.Name = "lblOutputFileName"
-        Me.lblOutputFileName.Size = New System.Drawing.Size(92, 13)
-        Me.lblOutputFileName.TabIndex = 0
-        Me.lblOutputFileName.Text = "Output File Name:"
+        Me.gbFileOperations.Controls.Add(Me.btnCreateFile)
+        Me.gbFileOperations.Location = New System.Drawing.Point(6, 57)
+        Me.gbFileOperations.Name = "gbFileOperations"
+        Me.gbFileOperations.Size = New System.Drawing.Size(133, 166)
+        Me.gbFileOperations.TabIndex = 4
+        Me.gbFileOperations.TabStop = False
+        Me.gbFileOperations.Text = "File Operations"
         '
-        'txtOutputFileName
+        'btnCreateFile
         '
-        Me.txtOutputFileName.Location = New System.Drawing.Point(6, 32)
-        Me.txtOutputFileName.Name = "txtOutputFileName"
-        Me.txtOutputFileName.Size = New System.Drawing.Size(83, 20)
-        Me.txtOutputFileName.TabIndex = 1
-        Me.txtOutputFileName.Text = "default.dat"
-        '
-        'btnSet
-        '
-        Me.btnSet.Location = New System.Drawing.Point(95, 31)
-        Me.btnSet.Name = "btnSet"
-        Me.btnSet.Size = New System.Drawing.Size(44, 20)
-        Me.btnSet.TabIndex = 2
-        Me.btnSet.Text = "Set"
-        Me.btnSet.UseVisualStyleBackColor = True
-        '
-        'cmdExit
-        '
-        Me.cmdExit.Location = New System.Drawing.Point(12, 345)
-        Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(145, 32)
-        Me.cmdExit.TabIndex = 7
-        Me.cmdExit.Text = "Exit"
-        Me.cmdExit.UseVisualStyleBackColor = True
+        Me.btnCreateFile.Location = New System.Drawing.Point(6, 19)
+        Me.btnCreateFile.Name = "btnCreateFile"
+        Me.btnCreateFile.Size = New System.Drawing.Size(121, 23)
+        Me.btnCreateFile.TabIndex = 0
+        Me.btnCreateFile.Text = "Create File"
+        Me.btnCreateFile.UseVisualStyleBackColor = True
         '
         'cbPromptToSaveOnExit
         '
@@ -207,17 +196,62 @@ Partial Class frmMain
         Me.cbPromptToSaveOnExit.Text = "Prompt to Save on Exit"
         Me.cbPromptToSaveOnExit.UseVisualStyleBackColor = True
         '
+        'btnSet
+        '
+        Me.btnSet.Location = New System.Drawing.Point(95, 31)
+        Me.btnSet.Name = "btnSet"
+        Me.btnSet.Size = New System.Drawing.Size(44, 20)
+        Me.btnSet.TabIndex = 2
+        Me.btnSet.Text = "Set"
+        Me.btnSet.UseVisualStyleBackColor = True
+        '
+        'txtOutputFileName
+        '
+        Me.txtOutputFileName.Location = New System.Drawing.Point(6, 32)
+        Me.txtOutputFileName.Name = "txtOutputFileName"
+        Me.txtOutputFileName.Size = New System.Drawing.Size(83, 20)
+        Me.txtOutputFileName.TabIndex = 1
+        Me.txtOutputFileName.Text = "default.dat"
+        '
+        'lblOutputFileName
+        '
+        Me.lblOutputFileName.AutoSize = True
+        Me.lblOutputFileName.Location = New System.Drawing.Point(6, 16)
+        Me.lblOutputFileName.Name = "lblOutputFileName"
+        Me.lblOutputFileName.Size = New System.Drawing.Size(92, 13)
+        Me.lblOutputFileName.TabIndex = 0
+        Me.lblOutputFileName.Text = "Output File Name:"
+        '
+        'cmdExit
+        '
+        Me.cmdExit.Location = New System.Drawing.Point(12, 345)
+        Me.cmdExit.Name = "cmdExit"
+        Me.cmdExit.Size = New System.Drawing.Size(145, 32)
+        Me.cmdExit.TabIndex = 7
+        Me.cmdExit.Text = "Exit"
+        Me.cmdExit.UseVisualStyleBackColor = True
+        '
+        'btnUseConsole
+        '
+        Me.btnUseConsole.Location = New System.Drawing.Point(12, 87)
+        Me.btnUseConsole.Name = "btnUseConsole"
+        Me.btnUseConsole.Size = New System.Drawing.Size(145, 23)
+        Me.btnUseConsole.TabIndex = 8
+        Me.btnUseConsole.Text = "Use Console"
+        Me.btnUseConsole.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(398, 389)
+        Me.Controls.Add(Me.btnUseConsole)
         Me.Controls.Add(Me.cmdExit)
         Me.Controls.Add(Me.gbSettings)
         Me.Controls.Add(Me.btnAddDatapoint)
         Me.Controls.Add(Me.gbBulkGenerator)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txtYValue)
+        Me.Controls.Add(Me.txtXValue)
         Me.Controls.Add(Me.lblY)
         Me.Controls.Add(Me.lblX)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -232,6 +266,7 @@ Partial Class frmMain
         Me.gbBulkOptions.PerformLayout()
         Me.gbSettings.ResumeLayout(False)
         Me.gbSettings.PerformLayout()
+        Me.gbFileOperations.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -239,8 +274,8 @@ Partial Class frmMain
 
     Friend WithEvents lblX As Label
     Friend WithEvents lblY As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtXValue As TextBox
+    Friend WithEvents txtYValue As TextBox
     Friend WithEvents gbBulkGenerator As GroupBox
     Friend WithEvents gbBulkOptions As GroupBox
     Friend WithEvents cbCommaDelimiters As CheckBox
@@ -255,4 +290,7 @@ Partial Class frmMain
     Friend WithEvents sfdSaveDataset As SaveFileDialog
     Friend WithEvents cmdExit As Button
     Friend WithEvents cbPromptToSaveOnExit As CheckBox
+    Friend WithEvents gbFileOperations As GroupBox
+    Friend WithEvents btnCreateFile As Button
+    Friend WithEvents btnUseConsole As Button
 End Class
