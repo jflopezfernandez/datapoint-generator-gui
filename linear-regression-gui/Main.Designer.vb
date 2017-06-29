@@ -352,6 +352,7 @@ Partial Class frmMain
         'btnUseConsole
         '
         Me.btnUseConsole.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.btnUseConsole.Enabled = False
         Me.btnUseConsole.Location = New System.Drawing.Point(12, 87)
         Me.btnUseConsole.Name = "btnUseConsole"
         Me.btnUseConsole.Size = New System.Drawing.Size(145, 23)

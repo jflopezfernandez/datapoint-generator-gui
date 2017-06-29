@@ -403,51 +403,51 @@ Public Class frmMain
     End Sub
 
     ' Deleted
-    Private Sub cbConsoleOpen_CheckedChanged(sender As Object, e As EventArgs)
+    'Private Sub cbConsoleOpen_CheckedChanged(sender As Object, e As EventArgs)
 
-        'Dim processNewConsole As Process
+    'Dim processNewConsole As Process
 
-        'If cbConsoleOpen.Checked Then
+    'If cbConsoleOpen.Checked Then
 
-        '    processNewConsole = Process.Start("cmd.exe")
+    '    processNewConsole = Process.Start("cmd.exe")
 
-        '    lbProcessList.Items().Add(processNewConsole)
-        '    lbProcessList.Items.Add(processNewConsole.ProcessName())
+    '    lbProcessList.Items().Add(processNewConsole)
+    '    lbProcessList.Items.Add(processNewConsole.ProcessName())
 
-        'Else
-        '    Dim processList() As Process
+    'Else
+    '    Dim processList() As Process
 
-        '    processList = Process.GetProcessesByName("cmd.exe")
+    '    processList = Process.GetProcessesByName("cmd.exe")
 
-        '    For Each proc As Process In processList
-        '        If MsgBox("Terminate " & proc.ProcessName & "?", MsgBoxStyle.YesNo, "Terminate?") = MsgBoxResult.Yes Then
-        '            proc.Kill()
-        '        End If
-        '    Next
-        'End If
+    '    For Each proc As Process In processList
+    '        If MsgBox("Terminate " & proc.ProcessName & "?", MsgBoxStyle.YesNo, "Terminate?") = MsgBoxResult.Yes Then
+    '            proc.Kill()
+    '        End If
+    '    Next
+    'End If
 
-    End Sub
+    'End Sub
 
-    Private Sub lbProcessList_DoubleClick(sender As Object, e As EventArgs)
+    'Private Sub lbProcessList_DoubleClick(sender As Object, e As EventArgs)
 
-        Dim processListItem As Process
-        processListItem = Process.GetProcessById(Process.)
+    '    Dim processListItem As Process
+    '    processListItem = Process.GetProcessById(Process.)
 
-        Dim promptTerminateProcess = MsgBox("Do you want to terminate this process? ", vbYesNo, "Proceed?")
+    '    Dim promptTerminateProcess = MsgBox("Do you want to terminate this process? ", vbYesNo, "Proceed?")
 
-        If promptTerminateProcess = vbYes Then
-            'statusstripMain_lblStatus.Text = "Status: Terminating Process - " + processListItem.ProcessName()
+    '    If promptTerminateProcess = vbYes Then
+    '        'statusstripMain_lblStatus.Text = "Status: Terminating Process - " + processListItem.ProcessName()
 
-            lbProcessList.Items.Remove(lbProcessList.SelectedItem())
-            processListItem.Kill()
+    '        lbProcessList.Items.Remove(lbProcessList.SelectedItem())
+    '        processListItem.Kill()
 
-        Else
-            Exit Sub
-        End If
+    '    Else
+    '        Exit Sub
+    '    End If
 
-        statusstripMain_lblStatus.Text = "Status: Ready"
+    '    statusstripMain_lblStatus.Text = "Status: Ready"
 
-    End Sub
+    'End Sub
 
     'Private Sub shutdownAllProcesses()
 
@@ -495,11 +495,8 @@ Public Class frmMain
     End Sub
 
     Private Sub btnOpenCmd_Click(sender As Object, e As EventArgs) Handles btnOpenCmd.Click
+
         Dim processNewConsole = Process.Start("cmd.exe")
-
-        lbProcessList.Items().Add(processNewConsole)
-        lbProcessList.Items.Add(processNewConsole.ProcessName())
-
 
     End Sub
 
