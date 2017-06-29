@@ -428,7 +428,7 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub lbProcessList_DoubleClick(sender As Object, e As EventArgs) Handles lbProcessList.DoubleClick
+    Private Sub lbProcessList_DoubleClick(sender As Object, e As EventArgs)
 
         Dim processListItem As Process
         processListItem = Process.GetProcessById(Process.)

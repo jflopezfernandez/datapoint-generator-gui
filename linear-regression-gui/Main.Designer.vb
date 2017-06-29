@@ -55,18 +55,8 @@ Partial Class frmMain
         Me.btnUseConsole = New System.Windows.Forms.Button()
         Me.ttMagnitude = New System.Windows.Forms.ToolTip(Me.components)
         Me.ttMantissa = New System.Windows.Forms.ToolTip(Me.components)
-        Me.gbSystem = New System.Windows.Forms.GroupBox()
-        Me.gbProcesses = New System.Windows.Forms.GroupBox()
-        Me.lbProcessList = New System.Windows.Forms.ListBox()
-        Me.statusstripMain = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.statusstripMain_lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.btnOpenCmd = New System.Windows.Forms.Button()
         Me.btnPurgeProcesses = New System.Windows.Forms.Button()
-        Me.lblProcessName = New System.Windows.Forms.Label()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.lblProcessID = New System.Windows.Forms.Label()
-        Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.processController = New System.Diagnostics.Process()
         Me.btnProcessController = New System.Windows.Forms.Button()
         Me.Process1 = New System.Diagnostics.Process()
@@ -76,14 +66,11 @@ Partial Class frmMain
         CType(Me.numMinMantissa, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbSettings.SuspendLayout()
         Me.gbFileOperations.SuspendLayout()
-        Me.gbSystem.SuspendLayout()
-        Me.gbProcesses.SuspendLayout()
-        Me.statusstripMain.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblX
         '
-        Me.lblX.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblX.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.lblX.AutoSize = True
         Me.lblX.Location = New System.Drawing.Point(12, 9)
         Me.lblX.Name = "lblX"
@@ -93,7 +80,7 @@ Partial Class frmMain
         '
         'lblY
         '
-        Me.lblY.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblY.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.lblY.AutoSize = True
         Me.lblY.Location = New System.Drawing.Point(12, 35)
         Me.lblY.Name = "lblY"
@@ -103,7 +90,7 @@ Partial Class frmMain
         '
         'txtXValue
         '
-        Me.txtXValue.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtXValue.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtXValue.Location = New System.Drawing.Point(57, 6)
         Me.txtXValue.Name = "txtXValue"
         Me.txtXValue.Size = New System.Drawing.Size(100, 20)
@@ -112,7 +99,7 @@ Partial Class frmMain
         '
         'txtYValue
         '
-        Me.txtYValue.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtYValue.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.txtYValue.Location = New System.Drawing.Point(57, 32)
         Me.txtYValue.Name = "txtYValue"
         Me.txtYValue.Size = New System.Drawing.Size(100, 20)
@@ -121,7 +108,7 @@ Partial Class frmMain
         '
         'gbBulkGenerator
         '
-        Me.gbBulkGenerator.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.gbBulkGenerator.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.gbBulkGenerator.Controls.Add(Me.btnProcessController)
         Me.gbBulkGenerator.Controls.Add(Me.gbBulkOptions)
         Me.gbBulkGenerator.Controls.Add(Me.btnBulkGenerate)
@@ -241,7 +228,7 @@ Partial Class frmMain
         '
         'btnAddDatapoint
         '
-        Me.btnAddDatapoint.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnAddDatapoint.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.btnAddDatapoint.Location = New System.Drawing.Point(12, 58)
         Me.btnAddDatapoint.Name = "btnAddDatapoint"
         Me.btnAddDatapoint.Size = New System.Drawing.Size(145, 23)
@@ -251,7 +238,7 @@ Partial Class frmMain
         '
         'gbSettings
         '
-        Me.gbSettings.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.gbSettings.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.gbSettings.Controls.Add(Me.btnPurgeProcesses)
         Me.gbSettings.Controls.Add(Me.btnOpenCmd)
         Me.gbSettings.Controls.Add(Me.btnSetUsername)
@@ -264,7 +251,7 @@ Partial Class frmMain
         Me.gbSettings.Controls.Add(Me.lblOutputFileName)
         Me.gbSettings.Location = New System.Drawing.Point(12, 119)
         Me.gbSettings.Name = "gbSettings"
-        Me.gbSettings.Size = New System.Drawing.Size(145, 220)
+        Me.gbSettings.Size = New System.Drawing.Size(145, 252)
         Me.gbSettings.TabIndex = 6
         Me.gbSettings.TabStop = False
         Me.gbSettings.Text = "Settings"
@@ -300,9 +287,9 @@ Partial Class frmMain
         Me.gbFileOperations.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gbFileOperations.Controls.Add(Me.btnCreateFile)
-        Me.gbFileOperations.Location = New System.Drawing.Point(6, 159)
+        Me.gbFileOperations.Location = New System.Drawing.Point(6, 178)
         Me.gbFileOperations.Name = "gbFileOperations"
-        Me.gbFileOperations.Size = New System.Drawing.Size(133, 55)
+        Me.gbFileOperations.Size = New System.Drawing.Size(133, 68)
         Me.gbFileOperations.TabIndex = 4
         Me.gbFileOperations.TabStop = False
         Me.gbFileOperations.Text = "File Operations"
@@ -319,7 +306,9 @@ Partial Class frmMain
         'cbPromptToSaveOnExit
         '
         Me.cbPromptToSaveOnExit.AutoSize = True
-        Me.cbPromptToSaveOnExit.Location = New System.Drawing.Point(6, 229)
+        Me.cbPromptToSaveOnExit.Checked = True
+        Me.cbPromptToSaveOnExit.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbPromptToSaveOnExit.Location = New System.Drawing.Point(6, 155)
         Me.cbPromptToSaveOnExit.Name = "cbPromptToSaveOnExit"
         Me.cbPromptToSaveOnExit.Size = New System.Drawing.Size(134, 17)
         Me.cbPromptToSaveOnExit.TabIndex = 3
@@ -354,17 +343,17 @@ Partial Class frmMain
         '
         'cmdExit
         '
-        Me.cmdExit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.cmdExit.Location = New System.Drawing.Point(12, 345)
+        Me.cmdExit.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.cmdExit.Location = New System.Drawing.Point(12, 377)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(145, 32)
+        Me.cmdExit.Size = New System.Drawing.Size(379, 32)
         Me.cmdExit.TabIndex = 7
         Me.cmdExit.Text = "Exit"
         Me.cmdExit.UseVisualStyleBackColor = True
         '
         'btnUseConsole
         '
-        Me.btnUseConsole.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnUseConsole.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.btnUseConsole.Location = New System.Drawing.Point(12, 87)
         Me.btnUseConsole.Name = "btnUseConsole"
         Me.btnUseConsole.Size = New System.Drawing.Size(145, 23)
@@ -383,71 +372,6 @@ Partial Class frmMain
         Me.ttMantissa.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.ttMantissa.ToolTipTitle = "Set Precision"
         '
-        'gbSystem
-        '
-        Me.gbSystem.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.gbSystem.Controls.Add(Me.TreeView1)
-        Me.gbSystem.Controls.Add(Me.gbProcesses)
-        Me.gbSystem.Location = New System.Drawing.Point(397, 12)
-        Me.gbSystem.Name = "gbSystem"
-        Me.gbSystem.Size = New System.Drawing.Size(295, 365)
-        Me.gbSystem.TabIndex = 4
-        Me.gbSystem.TabStop = False
-        Me.gbSystem.Text = "System"
-        '
-        'gbProcesses
-        '
-        Me.gbProcesses.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gbProcesses.Controls.Add(Me.lblProcessID)
-        Me.gbProcesses.Controls.Add(Me.ListBox1)
-        Me.gbProcesses.Controls.Add(Me.lblProcessName)
-        Me.gbProcesses.Controls.Add(Me.lbProcessList)
-        Me.gbProcesses.Location = New System.Drawing.Point(6, 178)
-        Me.gbProcesses.Name = "gbProcesses"
-        Me.gbProcesses.Size = New System.Drawing.Size(283, 181)
-        Me.gbProcesses.TabIndex = 0
-        Me.gbProcesses.TabStop = False
-        Me.gbProcesses.Text = "Processes"
-        '
-        'lbProcessList
-        '
-        Me.lbProcessList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lbProcessList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lbProcessList.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbProcessList.FormattingEnabled = True
-        Me.lbProcessList.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.lbProcessList.Location = New System.Drawing.Point(6, 45)
-        Me.lbProcessList.Margin = New System.Windows.Forms.Padding(1)
-        Me.lbProcessList.Name = "lbProcessList"
-        Me.lbProcessList.Size = New System.Drawing.Size(134, 132)
-        Me.lbProcessList.TabIndex = 0
-        '
-        'statusstripMain
-        '
-        Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButton1, Me.statusstripMain_lblStatus})
-        Me.statusstripMain.Location = New System.Drawing.Point(0, 383)
-        Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Size = New System.Drawing.Size(703, 22)
-        Me.statusstripMain.TabIndex = 9
-        Me.statusstripMain.Text = "StatusStrip1"
-        '
-        'ToolStripDropDownButton1
-        '
-        Me.ToolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripDropDownButton1.Image = CType(resources.GetObject("ToolStripDropDownButton1.Image"), System.Drawing.Image)
-        Me.ToolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
-        Me.ToolStripDropDownButton1.Size = New System.Drawing.Size(29, 20)
-        Me.ToolStripDropDownButton1.Text = "ToolStripDropDownButton1"
-        '
-        'statusstripMain_lblStatus
-        '
-        Me.statusstripMain_lblStatus.Name = "statusstripMain_lblStatus"
-        Me.statusstripMain_lblStatus.Size = New System.Drawing.Size(77, 17)
-        Me.statusstripMain_lblStatus.Text = "Status: Ready"
-        '
         'btnOpenCmd
         '
         Me.btnOpenCmd.Location = New System.Drawing.Point(6, 97)
@@ -465,45 +389,6 @@ Partial Class frmMain
         Me.btnPurgeProcesses.TabIndex = 10
         Me.btnPurgeProcesses.Text = "Purge Processes"
         Me.btnPurgeProcesses.UseVisualStyleBackColor = True
-        '
-        'lblProcessName
-        '
-        Me.lblProcessName.AutoSize = True
-        Me.lblProcessName.Location = New System.Drawing.Point(6, 26)
-        Me.lblProcessName.Name = "lblProcessName"
-        Me.lblProcessName.Size = New System.Drawing.Size(35, 13)
-        Me.lblProcessName.TabIndex = 1
-        Me.lblProcessName.Text = "Name"
-        '
-        'ListBox1
-        '
-        Me.ListBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ListBox1.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.ListBox1.Location = New System.Drawing.Point(142, 45)
-        Me.ListBox1.Margin = New System.Windows.Forms.Padding(1)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(137, 132)
-        Me.ListBox1.TabIndex = 2
-        '
-        'lblProcessID
-        '
-        Me.lblProcessID.AutoSize = True
-        Me.lblProcessID.Location = New System.Drawing.Point(139, 26)
-        Me.lblProcessID.Name = "lblProcessID"
-        Me.lblProcessID.Size = New System.Drawing.Size(59, 13)
-        Me.lblProcessID.TabIndex = 3
-        Me.lblProcessID.Text = "Process ID"
-        '
-        'TreeView1
-        '
-        Me.TreeView1.Location = New System.Drawing.Point(6, 19)
-        Me.TreeView1.Name = "TreeView1"
-        Me.TreeView1.Size = New System.Drawing.Size(283, 153)
-        Me.TreeView1.TabIndex = 1
         '
         'processController
         '
@@ -538,9 +423,7 @@ Partial Class frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(703, 405)
-        Me.Controls.Add(Me.statusstripMain)
-        Me.Controls.Add(Me.gbSystem)
+        Me.ClientSize = New System.Drawing.Size(397, 412)
         Me.Controls.Add(Me.btnUseConsole)
         Me.Controls.Add(Me.cmdExit)
         Me.Controls.Add(Me.gbSettings)
@@ -565,11 +448,6 @@ Partial Class frmMain
         Me.gbSettings.ResumeLayout(False)
         Me.gbSettings.PerformLayout()
         Me.gbFileOperations.ResumeLayout(False)
-        Me.gbSystem.ResumeLayout(False)
-        Me.gbProcesses.ResumeLayout(False)
-        Me.gbProcesses.PerformLayout()
-        Me.statusstripMain.ResumeLayout(False)
-        Me.statusstripMain.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -606,19 +484,9 @@ Partial Class frmMain
     Friend WithEvents lblMagnitude As Label
     Friend WithEvents ttMagnitude As ToolTip
     Friend WithEvents ttMantissa As ToolTip
-    Friend WithEvents gbSystem As GroupBox
-    Friend WithEvents gbProcesses As GroupBox
-    Friend WithEvents lbProcessList As ListBox
-    Protected WithEvents statusstripMain As StatusStrip
-    Friend WithEvents ToolStripDropDownButton1 As ToolStripDropDownButton
-    Friend WithEvents statusstripMain_lblStatus As ToolStripStatusLabel
     Friend WithEvents btnPurgeProcesses As Button
     Friend WithEvents btnOpenCmd As Button
     Friend WithEvents btnProcessController As Button
-    Friend WithEvents TreeView1 As TreeView
-    Friend WithEvents lblProcessID As Label
-    Friend WithEvents ListBox1 As ListBox
-    Friend WithEvents lblProcessName As Label
     Friend WithEvents processController As Process
     Friend WithEvents Process1 As Process
 End Class
