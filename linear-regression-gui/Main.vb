@@ -77,6 +77,11 @@ Public Class frmMain
                     .Enabled = False
                 End With
 
+                With btnCreateFile
+                    .Text = "Create File"
+                    .Enabled = True
+                End With
+
             Else
                 ' Username has been set
                 ' Dataset file has been generated
@@ -112,8 +117,8 @@ Public Class frmMain
                 End With
 
                 With btnCreateFile
-                    .Text = "Create File"
-                    .Enabled = True
+                    .Text = "File Created"
+                    .Enabled = False
                 End With
 
             End If
@@ -165,13 +170,21 @@ Public Class frmMain
         Else
             ' If a file has not been previously created, generate the file and turn on the fileCreated switch
 
-            Dim verifyUsername = MsgBox("Your username is currently set to " + userName + ", is this correct? This program will not work if your username does not match your Windows profile.", vbCancel + vbYes, "Please confirm user name.")
+
+            Dim verifyUsername = MsgBox("Your username is currently set to " + userName + ", is this correct? This program will not work if your username does not match your Windows profile.", vbYesNo, "Please confirm user name.")
 
             If verifyUsername = vbYes Then
 
                 ' No file has been created yet, so make one
+                getFilePathAndDirectory()
+
                 createDatasetFile()
                 fileCreated = True
+
+                refreshControls()
+
+                ' Let the user know what the knew path is
+                MsgBox("Full Path: " + filenameAndPath + " ", vbOK, "Update Completed")
 
             Else
                 Exit Sub
@@ -180,8 +193,6 @@ Public Class frmMain
     End Sub
 
     Private Sub createDatasetFile()
-
-        getFilePathAndDirectory()
 
         Dim input As String
         input = txtXValue.Text + ", " + txtYValue.Text
@@ -200,24 +211,41 @@ Public Class frmMain
     Private Sub fileOutput(ByVal iterations As Int64, ByVal randBulk As Boolean)
 
         If randBulk = True Then
+            Randomize()
+
+            Dim randomDouble As New Random
+
+            Dim rand_x As Double
+            Dim rand_y As Double
+
             Dim counter As Int64
             counter = 0
 
 
             Do Until (counter = iterations)
+                rand_x = randomDouble.NextDouble()
+                rand_y = randomDouble.NextDouble()
 
+                Dim input As String = Conversion.Str(rand_x) + ", " + Conversion.Str(rand_y)
+                PrintLine(1, input)
 
                 ' Increase counter
                 counter = counter + 1
             Loop
+        Else
+            Dim input As String
+            input = txtXValue.Text + ", " + txtYValue.Text
 
+            PrintLine(1, input)
         End If
+
+        refreshControls()
 
     End Sub
 
     Private Sub getFilePathAndDirectory()
 
-        userName = My.User.Name
+        userName = txtUsername.Text
         outputDirectory = "C:\Users\" + userName + "\Desktop\"
         filename = txtOutputFileName.Text
         filenameAndPath = outputDirectory + filename
@@ -256,5 +284,32 @@ Public Class frmMain
         usernameHasBeenSet = True
 
         refreshControls()
+    End Sub
+
+    Private Sub btnBulkGenerate_Click(sender As Object, e As EventArgs) Handles btnBulkGenerate.Click
+
+        ' If file does not exist, create it, otherwise just append to it
+        If IO.File.Exists(filenameAndPath) Then
+            FileOpen(1, filenameAndPath, OpenMode.Append)
+        Else
+            FileOpen(1, filenameAndPath, OpenMode.Output)
+        End If
+
+        fileOutput(Int(txtIterations.Text), True)
+
+        FileClose(1)
+    End Sub
+
+    Private Sub btnAddDatapoint_Click(sender As Object, e As EventArgs) Handles btnAddDatapoint.Click
+        ' If file does not exist, create it, otherwise just append to it
+        If IO.File.Exists(filenameAndPath) Then
+            FileOpen(1, filenameAndPath, OpenMode.Append)
+        Else
+            FileOpen(1, filenameAndPath, OpenMode.Output)
+        End If
+
+        fileOutput(1, False)
+
+        FileClose(1)
     End Sub
 End Class

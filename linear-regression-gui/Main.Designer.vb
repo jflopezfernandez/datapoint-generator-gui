@@ -30,7 +30,7 @@ Partial Class frmMain
         Me.gbBulkOptions = New System.Windows.Forms.GroupBox()
         Me.cbCommaDelimiters = New System.Windows.Forms.CheckBox()
         Me.btnBulkGenerate = New System.Windows.Forms.Button()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.txtIterations = New System.Windows.Forms.TextBox()
         Me.lblBulkGenerate = New System.Windows.Forms.Label()
         Me.btnAddDatapoint = New System.Windows.Forms.Button()
         Me.gbSettings = New System.Windows.Forms.GroupBox()
@@ -90,7 +90,7 @@ Partial Class frmMain
         '
         Me.gbBulkGenerator.Controls.Add(Me.gbBulkOptions)
         Me.gbBulkGenerator.Controls.Add(Me.btnBulkGenerate)
-        Me.gbBulkGenerator.Controls.Add(Me.TextBox3)
+        Me.gbBulkGenerator.Controls.Add(Me.txtIterations)
         Me.gbBulkGenerator.Controls.Add(Me.lblBulkGenerate)
         Me.gbBulkGenerator.Location = New System.Drawing.Point(163, 6)
         Me.gbBulkGenerator.Name = "gbBulkGenerator"
@@ -130,13 +130,13 @@ Partial Class frmMain
         Me.btnBulkGenerate.Text = "Bulk Generate"
         Me.btnBulkGenerate.UseVisualStyleBackColor = True
         '
-        'TextBox3
+        'txtIterations
         '
-        Me.TextBox3.Location = New System.Drawing.Point(6, 32)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox3.TabIndex = 1
-        Me.TextBox3.Text = "0"
+        Me.txtIterations.Location = New System.Drawing.Point(6, 32)
+        Me.txtIterations.Name = "txtIterations"
+        Me.txtIterations.Size = New System.Drawing.Size(100, 20)
+        Me.txtIterations.TabIndex = 1
+        Me.txtIterations.Text = "0"
         '
         'lblBulkGenerate
         '
@@ -312,7 +312,7 @@ Partial Class frmMain
     Friend WithEvents gbBulkOptions As GroupBox
     Friend WithEvents cbCommaDelimiters As CheckBox
     Friend WithEvents btnBulkGenerate As Button
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents txtIterations As TextBox
     Friend WithEvents lblBulkGenerate As Label
     Friend WithEvents btnAddDatapoint As Button
     Friend WithEvents gbSettings As GroupBox
